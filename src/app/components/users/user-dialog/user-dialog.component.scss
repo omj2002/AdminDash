@@ -1,0 +1,45 @@
+.user-dialog {
+  min-width: 500px;
+  
+  h2 {
+    display: flex;
+    align-items: center;
+    margin: 0 0 24px 0;
+    color: #333;
+    
+    mat-icon {
+      margin-right: 8px;
+      color: #1976d2;
+    }
+  }
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  .full-width {
+    width: 100%;
+  }
+}
+
+mat-dialog-actions {
+  padding: 16px 0 0 0;
+  margin: 0;
+  
+  button {
+    margin-left: 8px;
+    
+    mat-icon {
+      margin-right: 4px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .user-dialog {
+    min-width: unset;
+    width: 100%;
+  }
+}

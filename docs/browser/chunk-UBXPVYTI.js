@@ -1,0 +1,1 @@
+import{b as e,c as a}from"./chunk-7LI5U462.js";var t=e("[CMS] Load Pages"),s=e("[CMS] Load Pages Success",a()),g=e("[CMS] Load Pages Failure",a()),r=e("[CMS] Add Page",a()),p=e("[CMS] Create Page",a()),c=e("[CMS] Update Page",a()),d=e("[CMS] Delete Page",a());export{t as a,s as b,g as c,r as d,c as e,d as f};

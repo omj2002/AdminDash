@@ -1,0 +1,1 @@
+import{b as r,c as e}from"./chunk-7LI5U462.js";var t=r("[Order] Load Orders"),o=r("[Order] Load Orders Success",e()),s=r("[Order] Load Orders Failure",e()),O=r("[Order] Update Order Status",e()),a=r("[Order] Create Order",e()),n=r("[Order] Add Order",e()),c=r("[Order] Update Order",e()),p=r("[Order] Delete Order",e());export{t as a,o as b,s as c,O as d,n as e,c as f,p as g};

@@ -1,0 +1,77 @@
+<div class="admin-layout">
+  <!-- Top Navigation Bar -->
+  <mat-toolbar class="top-toolbar" color="primary">
+    <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <span class="toolbar-title">E-Commerce Admin Panel</span>
+    
+    <div class="spacer"></div>
+    
+    <!-- User Menu -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="openProfile()">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Sidebar -->
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav 
+        #sidenav 
+        mode="side" 
+        opened="true"
+        class="sidebar"
+        [class.mobile-sidebar]="isHandset$ | async">
+        
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+          <div class="logo">
+            <mat-icon class="logo-icon">store</mat-icon>
+            <span class="logo-text">Admin Panel</span>
+          </div>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <mat-nav-list class="nav-list">
+          <a mat-list-item 
+             *ngFor="let item of navigationItems" 
+             [routerLink]="item.route"
+             routerLinkActive="active"
+             class="nav-item">
+            <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
+            <span matListItemTitle class="nav-text">{{ item.name }}</span>
+            <mat-icon *ngIf="item.badge" matListItemMeta class="badge-icon">
+              <span class="badge">{{ item.badge }}</span>
+            </mat-icon>
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <!-- Main Content -->
+      <mat-sidenav-content class="content-area">
+        <div class="page-content">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>

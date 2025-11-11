@@ -1,0 +1,32 @@
+{
+  "periods": [
+    { "value": "7d", "label": "Last 7 Days" },
+    { "value": "15d", "label": "Last 15 Days" },
+    { "value": "30d", "label": "Last 30 Days" },
+    { "value": "90d", "label": "Last 90 Days" },
+    { "value": "1y", "label": "Last Year" }
+  ],
+  "analyticsData": {
+    "7d": { "revenue": 12500, "orders": 89, "users": 156, "conversion": 3.2, "salesData": [1200,1800,1500,2200,1900,2100,1800], "userData": [45,52,38,61,48,55,42], "labels": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"] },
+    "15d": { "revenue": 28500, "orders": 198, "users": 342, "conversion": 3.1, "salesData": [1200,1800,1500,2200,1900,2100,1800,1600,2000,1750,1950,2100,1850,2200,1900], "userData": [45,52,38,61,48,55,42,58,49,63,47,59,44,67,51], "labels": ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7","Day 8","Day 9","Day 10","Day 11","Day 12","Day 13","Day 14","Day 15"] },
+    "30d": { "revenue": 45678, "orders": 456, "users": 789, "conversion": 3.2, "salesData": [1200,1800,1500,2200,1900,2100,1800,1600,2000,1750,1950,2100,1850,2200,1900,1650,2050,1800,1950,2100,1750,2000,1850,2200,1900,1650,2050,1800,1950,2100], "userData": [45,52,38,61,48,55,42,58,49,63,47,59,44,67,51,46,54,41,57,50,43,56,48,62,49,45,53,40,55,47], "labels": ["Week 1","Week 2","Week 3","Week 4"] },
+    "90d": { "revenue": 125000, "orders": 1234, "users": 2156, "conversion": 3.4, "salesData": [12000,15000,18000,22000,19000,25000,28000,32000,29000,35000,38000,42000], "userData": [450,520,380,610,480,550,420,580,490,630,470,590], "labels": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] },
+    "1y": { "revenue": 450000, "orders": 4567, "users": 7890, "conversion": 3.5, "salesData": [12000,15000,18000,22000,19000,25000,28000,32000,29000,35000,38000,42000], "userData": [450,520,380,610,480,550,420,580,490,630,470,590], "labels": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] }
+  },
+  "topProducts": [
+    { "name": "Wireless Headphones", "sales": 1250, "revenue": 249750, "growth": "+12.5%" },
+    { "name": "Smart Watch", "sales": 890, "revenue": 266910, "growth": "+8.3%" },
+    { "name": "Running Shoes", "sales": 650, "revenue": 84450, "growth": "+15.2%" },
+    { "name": "Laptop Stand", "sales": 420, "revenue": 21000, "growth": "+5.7%" },
+    { "name": "Bluetooth Speaker", "sales": 380, "revenue": 19000, "growth": "+3.1%" }
+  ],
+  "recentActivity": [
+    { "action": "New Order", "description": "Order #1234 placed by John Doe", "time": "2 minutes ago", "type": "order" },
+    { "action": "User Registration", "description": "Jane Smith registered for an account", "time": "15 minutes ago", "type": "user" },
+    { "action": "Payment Received", "description": "Payment of $299.99 processed", "time": "1 hour ago", "type": "payment" },
+    { "action": "Product Updated", "description": "Smart Watch inventory updated", "time": "2 hours ago", "type": "product" },
+    { "action": "Support Ticket", "description": "New ticket #4567 created", "time": "3 hours ago", "type": "support" },
+    { "action": "Product Review", "description": "New review for Product X", "time": "4 hours ago", "type": "review" }
+  ]
+}
+

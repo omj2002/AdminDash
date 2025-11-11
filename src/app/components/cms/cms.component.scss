@@ -1,0 +1,53 @@
+.cms-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+  }
+}
+
+.pages-table-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.pages-table {
+  width: 100%;
+  
+  mat-chip {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 768px) {
+  .cms-container {
+    padding: 16px;
+  }
+  
+  .cms-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    
+    h1 {
+      font-size: 24px;
+    }
+  }
+}

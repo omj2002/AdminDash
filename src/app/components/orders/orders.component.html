@@ -1,0 +1,156 @@
+<div class="orders-container">
+  <div class="orders-header">
+    <div class="header-left">
+      <button mat-icon-button (click)="goBackToDashboard()" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1>Order Management</h1>
+    </div>
+    <button mat-raised-button color="primary" (click)="openOrderDialog()">
+      <mat-icon>add</mat-icon>
+      Add Order
+    </button>
+  </div>
+
+  <!-- Status Tabs -->
+  <mat-card class="tabs-card">
+    <mat-card-content>
+      <mat-tab-group [(selectedIndex)]="selectedTab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of statusTabs" [label]="tab.label + ' (' + tab.count + ')'">
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Filters -->
+  <mat-card class="filters-card">
+    <mat-card-content>
+      <div class="filters-row">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search orders</mat-label>
+          <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" placeholder="Order number, customer name, or email">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="statusFilter">
+            <mat-option value="all">All Status</mat-option>
+            <mat-option value="pending">Pending</mat-option>
+            <mat-option value="processing">Processing</mat-option>
+            <mat-option value="shipped">Shipped</mat-option>
+            <mat-option value="delivered">Delivered</mat-option>
+            <mat-option value="cancelled">Cancelled</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Orders Table -->
+  <mat-card class="orders-table-card">
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="filteredOrders" class="orders-table">
+          <!-- Order Number Column -->
+          <ng-container matColumnDef="orderNumber">
+            <th mat-header-cell *matHeaderCellDef>Order #</th>
+            <td mat-cell *matCellDef="let order">
+              <div class="order-number">
+                <strong>{{ order.orderNumber }}</strong>
+                <div class="order-id">ID: {{ order.id }}</div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Customer Column -->
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let order">
+              <div class="customer-info">
+                <div class="customer-name">{{ order.customerName }}</div>
+                <div class="customer-email">{{ order.customerEmail }}</div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Total Column -->
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total</th>
+            <td mat-cell *matCellDef="let order">
+              <div class="order-total">{{ order.total | currency:'USD':'symbol':'1.2-2' }}</div>
+            </td>
+          </ng-container>
+
+          <!-- Items Column -->
+          <ng-container matColumnDef="items">
+            <th mat-header-cell *matHeaderCellDef>Items</th>
+            <td mat-cell *matCellDef="let order">
+              <div class="items-count">
+                <mat-icon>shopping_bag</mat-icon>
+                {{ order.items }}
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let order">
+              <mat-chip [color]="getStatusColor(order.status)" selected>
+                <mat-icon>{{ getStatusIcon(order.status) }}</mat-icon>
+                {{ order.status | titlecase }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Created At Column -->
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>Created</th>
+            <td mat-cell *matCellDef="let order">
+              <div class="date-info">
+                <div class="created-date">{{ order.createdAt | date:'MMM dd, yyyy' }}</div>
+                <div class="updated-date">Updated: {{ order.updatedAt | date:'MMM dd' }}</div>
+              </div>
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let order">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openOrderDialog(order)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>View Details</span>
+                </button>
+                <button mat-menu-item (click)="updateStatus(order, 'processing')" *ngIf="order.status === 'pending'">
+                  <mat-icon>autorenew</mat-icon>
+                  <span>Mark Processing</span>
+                </button>
+                <button mat-menu-item (click)="updateStatus(order, 'shipped')" *ngIf="order.status === 'processing'">
+                  <mat-icon>local_shipping</mat-icon>
+                  <span>Mark Shipped</span>
+                </button>
+                <button mat-menu-item (click)="updateStatus(order, 'delivered')" *ngIf="order.status === 'shipped'">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Mark Delivered</span>
+                </button>
+                <button mat-menu-item (click)="updateStatus(order, 'cancelled')" *ngIf="order.status !== 'cancelled' && order.status !== 'delivered'">
+                  <mat-icon>cancel</mat-icon>
+                  <span>Cancel Order</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

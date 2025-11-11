@@ -1,0 +1,194 @@
+<div class="revenue-details-container">
+  <!-- Header -->
+  <div class="details-header">
+    <div class="header-left">
+      <button mat-icon-button (click)="goBackToDashboard()" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1>Revenue by Category Details</h1>
+    </div>
+    <div class="header-actions">
+      <button mat-button color="primary" (click)="goBackToDashboard()">
+        <mat-icon>dashboard</mat-icon>
+        Back to Dashboard
+      </button>
+    </div>
+  </div>
+
+  <!-- Revenue Overview -->
+  <div class="overview-cards">
+    <mat-card class="overview-card">
+      <mat-card-header>
+        <mat-card-title>Total Revenue</mat-card-title>
+        <mat-icon class="card-icon">attach_money</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="metric-value">${{ getTotalRevenue() | number }}</div>
+        <div class="metric-label">All Categories Combined</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="overview-card">
+      <mat-card-header>
+        <mat-card-title>Top Category</mat-card-title>
+        <mat-icon class="card-icon">star</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="metric-value">{{ getTopCategory().category }}</div>
+        <div class="metric-label">${{ getTopCategory().revenue | number }} Revenue</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="overview-card">
+      <mat-card-header>
+        <mat-card-title>Categories</mat-card-title>
+        <mat-icon class="card-icon">category</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="metric-value">{{ revenueByCategory.length }}</div>
+        <div class="metric-label">Active Categories</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <!-- Doughnut Chart -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Revenue Distribution</mat-card-title>
+        <mat-icon class="card-icon">pie_chart</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas baseChart
+                  [data]="revenueChartData"
+                  [options]="revenueChartOptions"
+                  [type]="'doughnut'"
+                  class="chart">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Bar Chart -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Revenue Comparison</mat-card-title>
+        <mat-icon class="card-icon">bar_chart</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas baseChart
+                  [data]="revenueBarChartData"
+                  [options]="revenueBarChartOptions"
+                  [type]="'bar'"
+                  class="chart">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Category Details Table -->
+  <mat-card class="table-card">
+    <mat-card-header>
+      <mat-card-title>Category Performance Details</mat-card-title>
+      <mat-icon class="card-icon">table_chart</mat-icon>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="revenueByCategory" class="revenue-table">
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>Category</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="category-cell">
+              <div class="category-color" [style.background-color]="element.color"></div>
+              {{ element.category }}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="revenue">
+          <th mat-header-cell *matHeaderCellDef>Revenue</th>
+          <td mat-cell *matCellDef="let element">${{ element.revenue | number }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="percentage">
+          <th mat-header-cell *matHeaderCellDef>Percentage</th>
+          <td mat-cell *matCellDef="let element">{{ element.percentage }}%</td>
+        </ng-container>
+
+        <ng-container matColumnDef="growth">
+          <th mat-header-cell *matHeaderCellDef>Growth</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-chip [color]="getGrowthColor(element.growth)" selected>
+              <mat-icon>{{ getGrowthIcon(element.growth) }}</mat-icon>
+              {{ element.growth }}%
+            </mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="orders">
+          <th mat-header-cell *matHeaderCellDef>Orders</th>
+          <td mat-cell *matCellDef="let element">{{ element.orders | number }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="avgOrderValue">
+          <th mat-header-cell *matHeaderCellDef>Avg Order Value</th>
+          <td mat-cell *matCellDef="let element">${{ element.avgOrderValue }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Category Performance Cards -->
+  <div class="category-cards">
+    <mat-card class="category-card" *ngFor="let category of revenueByCategory">
+      <mat-card-header>
+        <mat-card-title>
+          <div class="category-title">
+            <div class="category-color" [style.background-color]="category.color"></div>
+            {{ category.category }}
+          </div>
+        </mat-card-title>
+        <mat-icon class="card-icon">trending_up</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="category-metrics">
+          <div class="metric-row">
+            <span class="metric-label">Revenue:</span>
+            <span class="metric-value">${{ category.revenue | number }}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Percentage:</span>
+            <span class="metric-value">{{ category.percentage }}%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Growth:</span>
+            <span class="metric-value positive">+{{ category.growth }}%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Orders:</span>
+            <span class="metric-value">{{ category.orders | number }}</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Avg Order:</span>
+            <span class="metric-value">${{ category.avgOrderValue }}</span>
+          </div>
+        </div>
+        <div class="progress-section">
+          <div class="progress-label">Revenue Share</div>
+          <div class="progress-bar">
+            <div class="progress-fill" 
+                 [style.width.%]="category.percentage" 
+                 [style.background-color]="category.color">
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

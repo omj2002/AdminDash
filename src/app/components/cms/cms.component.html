@@ -1,0 +1,79 @@
+<div class="cms-container">
+  <div class="cms-header">
+    <h1>Content Management</h1>
+    <button mat-raised-button color="primary" (click)="createNewPage()">
+      <mat-icon>add</mat-icon>
+      New Page
+    </button>
+  </div>
+
+  <!-- CMS Pages Table -->
+  <mat-card class="pages-table-card">
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="(pages$ | async) || []" class="pages-table">
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let page">{{ page.title }}</td>
+          </ng-container>
+
+          <!-- Slug Column -->
+          <ng-container matColumnDef="slug">
+            <th mat-header-cell *matHeaderCellDef>Slug</th>
+            <td mat-cell *matCellDef="let page">{{ page.slug }}</td>
+          </ng-container>
+
+          <!-- Author Column -->
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef>Author</th>
+            <td mat-cell *matCellDef="let page">{{ page.author }}</td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let page">
+              <mat-chip [color]="getStatusColor(page.status)" selected>
+                {{ page.status | titlecase }}
+              </mat-chip>
+            </td>
+          </ng-container>
+
+          <!-- Created At Column -->
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>Created</th>
+            <td mat-cell *matCellDef="let page">{{ page.createdAt | date:'MMM dd, yyyy' }}</td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let page">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="editPage(page)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="previewPage(page)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>Preview</span>
+                </button>
+                <button mat-menu-item (click)="deletePage(page)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

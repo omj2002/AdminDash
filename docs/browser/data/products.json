@@ -1,0 +1,36 @@
+[
+  {
+    "id": "1",
+    "name": "Laptop Pro",
+    "description": "High-performance laptop for professionals",
+    "price": 1299.99,
+    "category": "Electronics",
+    "stock": 15,
+    "status": "active",
+    "image": "assets/img/placeholder-L.svg",
+    "createdAt": "2024-01-15"
+  },
+  {
+    "id": "2",
+    "name": "Smart Watch",
+    "description": "Advanced smartwatch with health monitoring features",
+    "price": 299.99,
+    "category": "Electronics",
+    "stock": 25,
+    "status": "active",
+    "image": "assets/img/placeholder-S.svg",
+    "createdAt": "2024-01-16"
+  },
+  {
+    "id": "3",
+    "name": "Running Shoes",
+    "description": "Comfortable running shoes for all terrains",
+    "price": 129.99,
+    "category": "Sports",
+    "stock": 0,
+    "status": "out_of_stock",
+    "image": "assets/img/placeholder-R.svg",
+    "createdAt": "2024-01-17"
+  }
+]
+

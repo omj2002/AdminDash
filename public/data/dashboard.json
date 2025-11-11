@@ -1,0 +1,118 @@
+{
+  "salesChartData": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "datasets": [
+      {
+        "data": [12000, 15000, 18000, 22000, 19000, 25000, 28000, 32000, 29000, 35000, 38000, 42000],
+        "label": "Revenue",
+        "backgroundColor": "rgba(102, 126, 234, 0.1)",
+        "borderColor": "rgba(102, 126, 234, 1)",
+        "borderWidth": 3,
+        "fill": true,
+        "tension": 0.4
+      },
+      {
+        "data": [8000, 9500, 12000, 14000, 13000, 16000, 18000, 20000, 19000, 22000, 24000, 26000],
+        "label": "Orders",
+        "backgroundColor": "rgba(255, 99, 132, 0.1)",
+        "borderColor": "rgba(255, 99, 132, 1)",
+        "borderWidth": 3,
+        "fill": true,
+        "tension": 0.4
+      }
+    ]
+  },
+  "revenueChartData": {
+    "labels": ["Electronics", "Clothing", "Books", "Home & Garden", "Sports"],
+    "datasets": [
+      {
+        "data": [45000, 32000, 28000, 22000, 15000],
+        "backgroundColor": ["#667eea", "#764ba2", "#f093fb", "#f5576c", "#4facfe"],
+        "borderWidth": 0,
+        "hoverOffset": 10
+      }
+    ]
+  },
+  "revenueBarChartData": {
+    "labels": ["Electronics", "Clothing", "Books", "Home & Garden", "Sports", "Beauty", "Automotive"],
+    "datasets": [
+      {
+        "data": [45000, 32000, 28000, 22000, 15000, 12000, 8000],
+        "label": "Revenue",
+        "backgroundColor": [
+          "rgba(102, 126, 234, 0.8)",
+          "rgba(118, 75, 162, 0.8)",
+          "rgba(240, 147, 251, 0.8)",
+          "rgba(245, 87, 108, 0.8)",
+          "rgba(79, 172, 254, 0.8)",
+          "rgba(76, 175, 80, 0.8)",
+          "rgba(255, 152, 0, 0.8)"
+        ],
+        "borderColor": [
+          "rgba(102, 126, 234, 1)",
+          "rgba(118, 75, 162, 1)",
+          "rgba(240, 147, 251, 1)",
+          "rgba(245, 87, 108, 1)",
+          "rgba(79, 172, 254, 1)",
+          "rgba(76, 175, 80, 1)",
+          "rgba(255, 152, 0, 1)"
+        ],
+        "borderWidth": 2,
+        "borderRadius": 8,
+        "borderSkipped": false
+      }
+    ]
+  },
+  "monthlyRevenueData": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "datasets": [
+      {
+        "data": [12000, 15000, 18000, 22000, 19000, 25000, 28000, 32000, 29000, 35000, 38000, 42000],
+        "label": "Monthly Revenue",
+        "backgroundColor": "rgba(102, 126, 234, 0.8)",
+        "borderColor": "rgba(102, 126, 234, 1)",
+        "borderWidth": 2,
+        "borderRadius": 6,
+        "borderSkipped": false
+      }
+    ]
+  },
+  "salesMetrics": {
+    "totalSales": 245670,
+    "monthlyGrowth": 12.5,
+    "averageOrderValue": 199.5,
+    "conversionRate": 3.2,
+    "customerRetention": 78.5,
+    "topSellingCategory": "Electronics"
+  },
+  "salesOverview": {
+    "todaySales": 12500,
+    "yesterdaySales": 11800,
+    "weeklySales": 87500,
+    "monthlySales": 245670,
+    "quarterlySales": 720000,
+    "yearlySales": 2800000
+  },
+  "revenueByCategory": [
+    { "category": "Electronics", "revenue": 45000, "percentage": 35.2, "growth": 15.3, "color": "#667eea" },
+    { "category": "Clothing", "revenue": 32000, "percentage": 25.0, "growth": 8.7, "color": "#764ba2" },
+    { "category": "Books", "revenue": 28000, "percentage": 21.9, "growth": 12.1, "color": "#f093fb" },
+    { "category": "Home & Garden", "revenue": 22000, "percentage": 17.2, "growth": 5.4, "color": "#f5576c" },
+    { "category": "Sports", "revenue": 15000, "percentage": 11.7, "growth": 22.8, "color": "#4facfe" }
+  ],
+  "recentOrders": [
+    { "id": "12345", "customer": "John Doe", "amount": "$299.99", "time": "2 min ago", "status": "Processing" },
+    { "id": "12346", "customer": "Jane Smith", "amount": "$149.50", "time": "15 min ago", "status": "Shipped" },
+    { "id": "12347", "customer": "Mike Johnson", "amount": "$89.99", "time": "1 hour ago", "status": "Delivered" },
+    { "id": "12348", "customer": "Sarah Wilson", "amount": "$199.99", "time": "2 hours ago", "status": "Processing" },
+    { "id": "12349", "customer": "David Brown", "amount": "$79.99", "time": "3 hours ago", "status": "Pending" }
+  ],
+  "topProducts": [
+    { "name": "Wireless Headphones", "category": "Electronics", "sales": 156, "revenue": "12,450", "rating": 4.5, "image": "assets/img/placeholder-H.svg" },
+    { "name": "Smart Watch", "category": "Electronics", "sales": 98, "revenue": "9,800", "rating": 4.8, "image": "assets/img/placeholder-S.svg" },
+    { "name": "Running Shoes", "category": "Sports", "sales": 87, "revenue": "6,960", "rating": 4.3, "image": "assets/img/placeholder-R.svg" },
+    { "name": "Coffee Maker", "category": "Home", "sales": 76, "revenue": "4,560", "rating": 4.6, "image": "assets/img/placeholder-C.svg" },
+    { "name": "Laptop Stand", "category": "Electronics", "sales": 65, "revenue": "3,250", "rating": 4.4, "image": "assets/img/placeholder-L.svg" }
+  ]
+}
+

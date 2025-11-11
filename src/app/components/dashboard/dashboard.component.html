@@ -1,0 +1,366 @@
+<div class="dashboard-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Dashboard</h1>
+      <p class="page-subtitle">Welcome back! Here's what's happening with your business today.</p>
+    </div>
+  </div>
+
+  <!-- Stats Cards Row -->
+  <div class="stats-container">
+    <div class="stats-grid">
+      <mat-card class="stat-card revenue-card">
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>attach_money</mat-icon>
+          </div>
+          <div class="stat-details">
+            <h3 class="stat-value">$24,567</h3>
+            <p class="stat-label">Total Revenue</p>
+            <span class="stat-change positive">+12.5%</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="stat-card orders-card">
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>shopping_cart</mat-icon>
+          </div>
+          <div class="stat-details">
+            <h3 class="stat-value">1,234</h3>
+            <p class="stat-label">Total Orders</p>
+            <span class="stat-change positive">+8.2%</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="stat-card customers-card">
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>people</mat-icon>
+          </div>
+          <div class="stat-details">
+            <h3 class="stat-value">5,678</h3>
+            <p class="stat-label">Customers</p>
+            <span class="stat-change positive">+15.3%</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card class="stat-card products-card">
+        <div class="stat-content">
+          <div class="stat-icon">
+            <mat-icon>inventory</mat-icon>
+          </div>
+          <div class="stat-details">
+            <h3 class="stat-value">892</h3>
+            <p class="stat-label">Products</p>
+            <span class="stat-change negative">-2.1%</span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Enhanced Sales Overview Section -->
+  <div class="sales-overview-container">
+    <div class="sales-overview-grid">
+      <!-- Sales Metrics Cards -->
+      <mat-card class="sales-metric-card">
+        <mat-card-header>
+          <mat-card-title>Sales Overview</mat-card-title>
+          <mat-icon class="metric-icon">trending_up</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="metric-grid">
+            <div class="metric-item">
+              <div class="metric-value">${{ salesOverview.todaySales | number }}</div>
+              <div class="metric-label">Today's Sales</div>
+              <div class="metric-change positive">+5.2% vs yesterday</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">${{ salesOverview.weeklySales | number }}</div>
+              <div class="metric-label">This Week</div>
+              <div class="metric-change positive">+12.3% vs last week</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">${{ salesOverview.monthlySales | number }}</div>
+              <div class="metric-label">This Month</div>
+              <div class="metric-change positive">+{{ salesMetrics.monthlyGrowth }}% vs last month</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Key Performance Indicators -->
+      <mat-card class="kpi-card">
+        <mat-card-header>
+          <mat-card-title>Key Performance Indicators</mat-card-title>
+          <mat-icon class="metric-icon">analytics</mat-icon>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="kpi-grid">
+            <div class="kpi-item">
+              <div class="kpi-value">${{ salesMetrics.averageOrderValue }}</div>
+              <div class="kpi-label">Average Order Value</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-value">{{ salesMetrics.conversionRate }}%</div>
+              <div class="kpi-label">Conversion Rate</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-value">{{ salesMetrics.customerRetention }}%</div>
+              <div class="kpi-label">Customer Retention</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-value">{{ salesMetrics.topSellingCategory }}</div>
+              <div class="kpi-label">Top Category</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-container">
+    <div class="charts-grid">
+      <!-- Enhanced Sales Chart -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Sales & Revenue Trends</mat-card-title>
+          <button mat-icon-button [matMenuTriggerFor]="salesMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #salesMenu="matMenu">
+            <button mat-menu-item (click)="exportSalesData()">Export Data</button>
+            <button mat-menu-item (click)="viewSalesDetails()">View Details</button>
+            <button mat-menu-item (click)="downloadSalesReport()">Download Report</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart
+                    [data]="salesChartData"
+                    [options]="salesChartOptions"
+                    [type]="'line'"
+                    class="chart">
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Revenue by Category Doughnut -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Revenue by Category</mat-card-title>
+          <button mat-icon-button [matMenuTriggerFor]="revenueMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #revenueMenu="matMenu">
+            <button mat-menu-item (click)="exportRevenueData()">Export Data</button>
+            <button mat-menu-item (click)="viewRevenueDetails()">View Details</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart
+                    [data]="revenueChartData"
+                    [options]="revenueChartOptions"
+                    [type]="'doughnut'"
+                    class="chart">
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Test Chart Section -->
+  <div class="test-chart-container">
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Test Chart (Simple Bar)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container">
+          <canvas baseChart
+                  [data]="testChartData"
+                  [options]="testChartOptions"
+                  [type]="'bar'"
+                  class="chart">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Revenue Analysis Section -->
+  <div class="revenue-analysis-container">
+    <div class="revenue-analysis-grid">
+      <!-- Revenue Bar Chart -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Revenue by Category (Bar Chart)</mat-card-title>
+          <button mat-icon-button [matMenuTriggerFor]="barChartMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #barChartMenu="matMenu">
+            <button mat-menu-item (click)="exportBarChartData()">Export Data</button>
+            <button mat-menu-item (click)="viewBarChartDetails()">View Details</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart
+                    [data]="revenueBarChartData"
+                    [options]="revenueBarChartOptions"
+                    [type]="'bar'"
+                    class="chart">
+            </canvas>
+            <!-- Debug info -->
+            <div *ngIf="revenueBarChartData?.datasets?.length"
+                 style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; font-size: 12px;">
+              Chart Data: {{ revenueBarChartData.datasets[0]?.data?.length || 0 }} items
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Monthly Revenue Bar Chart -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Monthly Revenue Breakdown</mat-card-title>
+          <button mat-icon-button [matMenuTriggerFor]="monthlyMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #monthlyMenu="matMenu">
+            <button mat-menu-item (click)="exportMonthlyData()">Export Data</button>
+            <button mat-menu-item (click)="viewMonthlyDetails()">View Details</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart
+                    [data]="monthlyRevenueData"
+                    [options]="monthlyRevenueOptions"
+                    [type]="'bar'"
+                    class="chart">
+            </canvas>
+            <!-- Debug info -->
+            <div *ngIf="monthlyRevenueData?.datasets?.length"
+                 style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px; font-size: 12px;">
+              Monthly Data: {{ monthlyRevenueData.datasets[0]?.data?.length || 0 }} months
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Revenue by Category Detailed Breakdown -->
+  <div class="revenue-breakdown-container">
+    <mat-card class="revenue-breakdown-card">
+      <mat-card-header>
+        <mat-card-title>Revenue by Category - Detailed Analysis</mat-card-title>
+        <div class="button-group">
+          <button mat-button color="primary" (click)="viewFullReport()">View Full Report</button>
+          <button mat-button color="accent" (click)="downloadFullReport()">Download Full Report</button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="revenue-breakdown-list">
+          <div class="revenue-item" *ngFor="let item of revenueByCategory">
+            <div class="category-info">
+              <div class="category-color" [style.background-color]="item.color"></div>
+              <div class="category-details">
+                <h4 class="category-name">{{ item.category }}</h4>
+                <p class="category-revenue">${{ item.revenue | number }}</p>
+              </div>
+            </div>
+            <div class="category-stats">
+              <div class="stat-item">
+                <span class="stat-label">Percentage</span>
+                <span class="stat-value">{{ item.percentage }}%</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Growth</span>
+                <span class="stat-value positive">+{{ item.growth }}%</span>
+              </div>
+            </div>
+            <div class="category-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" 
+                     [style.width.%]="item.percentage" 
+                     [style.background-color]="item.color">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Content Row -->
+  <div class="content-container">
+    <div class="content-grid">
+      <!-- Recent Orders -->
+      <mat-card class="activity-card">
+        <mat-card-header>
+          <mat-card-title>Recent Orders</mat-card-title>
+          <button mat-button color="primary" (click)="viewAllOrders()">View All</button>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="activity-list">
+            <div class="activity-item" *ngFor="let order of recentOrders">
+              <div class="activity-avatar">
+                <mat-icon>shopping_cart</mat-icon>
+              </div>
+              <div class="activity-content">
+                <p class="activity-title">Order #{{ order.id }}</p>
+                <p class="activity-subtitle">{{ order.customer }} • {{ order.amount }}</p>
+              </div>
+              <div class="activity-meta">
+                <span class="activity-time">{{ order.time }}</span>
+                <mat-chip [color]="getOrderStatusColor(order.status)" selected>
+                  {{ order.status }}
+                </mat-chip>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Top Products -->
+      <mat-card class="products-card">
+        <mat-card-header>
+          <mat-card-title>Top Products</mat-card-title>
+          <button mat-button color="primary" (click)="viewAllProducts()">View All</button>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="products-list">
+            <div class="product-item" *ngFor="let product of topProducts">
+              <div class="product-image">
+                <img [src]="product.image" [alt]="product.name">
+              </div>
+              <div class="product-info">
+                <h4 class="product-name">{{ product.name }}</h4>
+                <p class="product-category">{{ product.category }}</p>
+                <div class="product-stats">
+                  <span class="product-sales">{{ product.sales }} sales</span>
+                  <span class="product-revenue">${{ product.revenue }}</span>
+                </div>
+              </div>
+              <div class="product-rating">
+                <mat-icon *ngFor="let star of getStars(product.rating)">{{ star }}</mat-icon>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

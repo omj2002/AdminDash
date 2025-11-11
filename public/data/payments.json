@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1",
+    "transactionId": "TXN-001",
+    "amount": 299.99,
+    "status": "completed",
+    "method": "Credit Card",
+    "customerName": "John Doe",
+    "createdAt": "2024-01-20"
+  },
+  {
+    "id": "2",
+    "transactionId": "TXN-002",
+    "amount": 149.99,
+    "status": "pending",
+    "method": "PayPal",
+    "customerName": "Jane Smith",
+    "createdAt": "2024-01-19"
+  }
+]
+

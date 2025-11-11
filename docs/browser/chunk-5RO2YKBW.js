@@ -1,0 +1,1 @@
+import{b as t,c as e}from"./chunk-7LI5U462.js";var c=t("[Support] Load Tickets"),r=t("[Support] Load Tickets Success",e()),p=t("[Support] Load Tickets Failure",e()),i=t("[Support] Add Ticket",e()),s=t("[Support] Create Ticket",e()),a=t("[Support] Update Ticket",e()),k=t("[Support] Close Ticket",e());export{c as a,r as b,p as c,i as d,a as e};

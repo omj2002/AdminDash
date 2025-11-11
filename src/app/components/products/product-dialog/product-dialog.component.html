@@ -1,0 +1,107 @@
+<div class="product-dialog">
+  <h2 mat-dialog-title>
+    <mat-icon>{{ isEdit ? 'edit' : 'add' }}</mat-icon>
+    {{ isEdit ? 'Edit Product' : 'Add New Product' }}
+  </h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="productForm" class="product-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Product Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter product name">
+          <mat-icon matSuffix>inventory</mat-icon>
+          <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+            Product name is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('name')?.hasError('minlength')">
+            Product name must be at least 2 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" placeholder="Enter product description" rows="3"></textarea>
+          <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+            Description is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('description')?.hasError('minlength')">
+            Description must be at least 10 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" placeholder="0.00">
+          <span matPrefix>$&nbsp;</span>
+          <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+            Price is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+            Price must be greater than 0
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Stock</mat-label>
+          <input matInput type="number" formControlName="stock" placeholder="0">
+          <mat-icon matSuffix>inventory_2</mat-icon>
+          <mat-error *ngIf="productForm.get('stock')?.hasError('required')">
+            Stock is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('stock')?.hasError('min')">
+            Stock must be 0 or greater
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{ category.label }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>category</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statuses" [value]="status.value">
+              {{ status.label }}
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>check_circle</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Image URL</mat-label>
+          <input matInput formControlName="image" placeholder="https://example.com/image.jpg">
+          <mat-icon matSuffix>image</mat-icon>
+          <mat-error *ngIf="productForm.get('image')?.hasError('required')">
+            Image URL is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="productForm.invalid">
+      <mat-icon>{{ isEdit ? 'save' : 'add' }}</mat-icon>
+      {{ isEdit ? 'Update' : 'Create' }}
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "1",
+    "orderNumber": "ORD-001",
+    "customerName": "John Doe",
+    "customerEmail": "john.doe@example.com",
+    "total": 299.99,
+    "status": "pending",
+    "items": 3,
+    "createdAt": "2024-01-20",
+    "updatedAt": "2024-01-20"
+  },
+  {
+    "id": "2",
+    "orderNumber": "ORD-002",
+    "customerName": "Jane Smith",
+    "customerEmail": "jane.smith@example.com",
+    "total": 149.99,
+    "status": "processing",
+    "items": 2,
+    "createdAt": "2024-01-19",
+    "updatedAt": "2024-01-19"
+  },
+  {
+    "id": "3",
+    "orderNumber": "ORD-003",
+    "customerName": "Bob Johnson",
+    "customerEmail": "bob.johnson@example.com",
+    "total": 89.99,
+    "status": "shipped",
+    "items": 1,
+    "createdAt": "2024-01-18",
+    "updatedAt": "2024-01-19"
+  },
+  {
+    "id": "4",
+    "orderNumber": "ORD-004",
+    "customerName": "Alice Brown",
+    "customerEmail": "alice.brown@example.com",
+    "total": 199.99,
+    "status": "delivered",
+    "items": 2,
+    "createdAt": "2024-01-17",
+    "updatedAt": "2024-01-18"
+  },
+  {
+    "id": "5",
+    "orderNumber": "ORD-005",
+    "customerName": "Charlie Wilson",
+    "customerEmail": "charlie.wilson@example.com",
+    "total": 79.99,
+    "status": "Processing",
+    "items": 1,
+    "createdAt": "2024-01-16",
+    "updatedAt": "2024-01-16"
+  },
+  {
+    "id": "6",
+    "orderNumber": "ORD-005",
+    "customerName": "Charlie Wilson",
+    "customerEmail": "charlie.wilson@example.com",
+    "total": 79.99,
+    "status": "Processing",
+    "items": 1,
+    "createdAt": "2024-01-16",
+    "updatedAt": "2024-01-16"
+  }
+]
+

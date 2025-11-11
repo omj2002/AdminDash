@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1",
+    "ticketNumber": "TICKET-001",
+    "subject": "Order not delivered",
+    "status": "open",
+    "priority": "high",
+    "customerName": "John Doe",
+    "createdAt": "2024-01-20"
+  },
+  {
+    "id": "2",
+    "ticketNumber": "TICKET-002",
+    "subject": "Payment issue",
+    "status": "in_progress",
+    "priority": "medium",
+    "customerName": "Jane Smith",
+    "createdAt": "2024-01-19"
+  }
+]
+

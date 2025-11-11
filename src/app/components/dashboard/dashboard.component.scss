@@ -1,0 +1,760 @@
+/* Professional Dashboard Styles - Fixed Layout */
+
+.dashboard-container {
+  padding: 0;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: white;
+  }
+  
+  .page-subtitle {
+    font-size: 18px;
+    margin: 0;
+    opacity: 0.9;
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+  }
+}
+
+/* Stats Container */
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  
+  .stat-content {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    
+    .stat-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+      
+      mat-icon {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        color: white;
+      }
+    }
+    
+    .stat-details {
+      flex: 1;
+      
+      .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+        color: #2c3e50;
+        line-height: 1.2;
+      }
+      
+      .stat-label {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin: 0 0 8px 0;
+        font-weight: 500;
+      }
+      
+      .stat-change {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 12px;
+        display: inline-block;
+        
+        &.positive {
+          background: #e8f5e8;
+          color: #4CAF50;
+        }
+        
+        &.negative {
+          background: #ffebee;
+          color: #f44336;
+        }
+      }
+    }
+  }
+}
+
+/* Card Color Themes */
+.revenue-card .stat-icon {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.orders-card .stat-icon {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+}
+
+.customers-card .stat-icon {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+.products-card .stat-icon {
+  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+}
+
+/* Charts Container */
+.charts-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  
+  mat-card-header {
+    padding: 24px 24px 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    mat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      color: #2c3e50;
+    }
+  }
+  
+  mat-card-content {
+    padding: 24px;
+    
+    .chart-container {
+      height: 400px;
+      width: 100%;
+      position: relative;
+      
+      .chart {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+      }
+    }
+  }
+}
+
+/* Enhanced Sales Overview */
+.sales-overview-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.sales-overview-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.sales-metric-card, .kpi-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  
+  mat-card-header {
+    padding: 24px 24px 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    
+    mat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      color: #2c3e50;
+    }
+    
+    .metric-icon {
+      color: #667eea;
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  mat-card-content {
+    padding: 24px;
+  }
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  
+  .metric-item {
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    
+    .metric-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: #7f8c8d;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .metric-change {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-block;
+      
+      &.positive {
+        background: #e8f5e8;
+        color: #4CAF50;
+      }
+    }
+  }
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  
+  .kpi-item {
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    
+    .kpi-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    
+    .kpi-label {
+      font-size: 12px;
+      color: #7f8c8d;
+      font-weight: 500;
+    }
+  }
+}
+
+/* Test Chart Section */
+.test-chart-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+/* Revenue Analysis Section */
+.revenue-analysis-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.revenue-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Revenue Breakdown */
+.revenue-breakdown-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.revenue-breakdown-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  
+  mat-card-header {
+    padding: 24px 24px 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    
+    mat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      color: #2c3e50;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      
+      button {
+        min-width: 140px;
+      }
+    }
+  }
+  
+  mat-card-content {
+    padding: 24px;
+  }
+}
+
+.revenue-breakdown-list {
+  .revenue-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f8f9fa;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .category-info {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      
+      .category-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 16px;
+        flex-shrink: 0;
+      }
+      
+      .category-details {
+        .category-name {
+          font-size: 16px;
+          font-weight: 600;
+          margin: 0 0 4px 0;
+          color: #2c3e50;
+        }
+        
+        .category-revenue {
+          font-size: 14px;
+          color: #7f8c8d;
+          margin: 0;
+          font-weight: 500;
+        }
+      }
+    }
+    
+    .category-stats {
+      display: flex;
+      gap: 24px;
+      margin-right: 24px;
+      
+      .stat-item {
+        text-align: center;
+        
+        .stat-label {
+          font-size: 12px;
+          color: #7f8c8d;
+          display: block;
+          margin-bottom: 4px;
+        }
+        
+        .stat-value {
+          font-size: 14px;
+          font-weight: 600;
+          color: #2c3e50;
+          
+          &.positive {
+            color: #4CAF50;
+          }
+        }
+      }
+    }
+    
+    .category-progress {
+      width: 120px;
+      
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        overflow: hidden;
+        
+        .progress-fill {
+          height: 100%;
+          border-radius: 4px;
+          transition: width 0.3s ease;
+        }
+      }
+    }
+  }
+}
+
+/* Content Container */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto 32px auto;
+  padding: 0 32px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.activity-card, .products-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  
+  mat-card-header {
+    padding: 24px 24px 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    
+    mat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      color: #2c3e50;
+    }
+  }
+  
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+/* Activity List */
+.activity-list {
+  padding: 16px 0;
+  
+  .activity-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #f8f9fa;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      flex-shrink: 0;
+      
+      mat-icon {
+        color: white;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    .activity-content {
+      flex: 1;
+      
+      .activity-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: #2c3e50;
+      }
+      
+      .activity-subtitle {
+        font-size: 12px;
+        color: #7f8c8d;
+        margin: 0;
+      }
+    }
+    
+    .activity-meta {
+      text-align: right;
+      
+      .activity-time {
+        font-size: 12px;
+        color: #7f8c8d;
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+/* Products List */
+.products-list {
+  padding: 16px 0;
+  
+  .product-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: #f8f9fa;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .product-image {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-right: 16px;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .product-info {
+      flex: 1;
+      
+      .product-name {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        color: #2c3e50;
+      }
+      
+      .product-category {
+        font-size: 12px;
+        color: #7f8c8d;
+        margin: 0 0 8px 0;
+      }
+      
+      .product-stats {
+        display: flex;
+        gap: 16px;
+        
+        .product-sales, .product-revenue {
+          font-size: 12px;
+          color: #7f8c8d;
+        }
+        
+        .product-revenue {
+          font-weight: 600;
+          color: #4CAF50;
+        }
+      }
+    }
+    
+    .product-rating {
+      display: flex;
+      gap: 2px;
+      
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: #ffc107;
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sales-overview-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .revenue-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 24px 16px;
+    margin-bottom: 24px;
+    
+    .page-title {
+      font-size: 28px;
+    }
+    
+    .page-subtitle {
+      font-size: 16px;
+    }
+  }
+  
+  .stats-container, .charts-container, .content-container, 
+  .sales-overview-container, .revenue-analysis-container, .revenue-breakdown-container {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .charts-grid, .content-grid, .sales-overview-grid, .revenue-analysis-grid {
+    gap: 16px;
+  }
+  
+  .metric-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .revenue-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    
+    .category-stats {
+      margin-right: 0;
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .category-progress {
+      width: 100%;
+    }
+  }
+  
+  .stat-card .stat-content {
+    padding: 20px;
+    
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      margin-right: 16px;
+      
+      mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+    
+    .stat-details .stat-value {
+      font-size: 24px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card .stat-content {
+    flex-direction: column;
+    text-align: center;
+    
+    .stat-icon {
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+  }
+  
+  .chart-card mat-card-content .chart-container {
+    height: 250px;
+  }
+}

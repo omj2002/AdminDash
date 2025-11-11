@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "Home Page",
+    "slug": "home",
+    "status": "published",
+    "author": "Admin",
+    "createdAt": "2024-01-20",
+    "updatedAt": "2024-01-20",
+    "content": "Welcome to our ecommerce site."
+  },
+  {
+    "id": "2",
+    "title": "About Us",
+    "slug": "about",
+    "status": "draft",
+    "author": "Admin",
+    "createdAt": "2024-01-19",
+    "updatedAt": "2024-01-19",
+    "content": "We sell great products."
+  }
+]
+

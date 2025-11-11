@@ -1,0 +1,1 @@
+import{Gc as o,fa as e,ja as i}from"./chunk-H7G55VRW.js";var n=class t{constructor(r){this.http=r}getJson(r){return this.http.get(r)}static \u0275fac=function(a){return new(a||t)(i(o))};static \u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})};export{n as a};
